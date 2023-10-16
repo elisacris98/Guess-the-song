@@ -8,19 +8,20 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Guess the Song Game</h1>
-    <div id="game-container">
-        <div id="song-container">
-            <p>Guess the song:</p>
-            <p id="song-title">Song Title Goes Here</p>
-        </div>
-        <div id="user-input">
-            <input type="text" id="guess-input" placeholder="Your guess">
-            <button id="submit-guess">Submit</button>
-        </div>
-        <div id="result-container">
-            <p id="result-message"></p>
-        </div>
+   
+    <h1>Guess the Song</h1>
+    <p id="song-title">Song Title</p>
+    <button onclick="playSong()">Play Song</button>
+
+    <div id="option-buttons">
+        <button onclick="selectOption(this)"></button>
+        <button onclick="selectOption(this)"></button>
+        <button onclick="selectOption(this)"></button>
+        <button onclick="selectOption(this)"></button>
+    </div>
+   
+    
+        
     <script src="script.js"></script>
 </body>
 </html>
