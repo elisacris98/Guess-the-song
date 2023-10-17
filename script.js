@@ -2,19 +2,19 @@ const song = [
     {
     title: "21 Guns",
     artist: "Green Day",
-    mp3Path: "21 guns - Greenday.mp3"
+    mp3Path: "SONGS/21 guns - Greenday.mp3"
     
     },
     {
      title: "99 Problems",
      artist: "Jay-Z",
-    mp3Path: "99 Problems - Jay-Z.mp3"
+    mp3Path: "SONGS/99 Problems - Jay-Z.mp3"
     },
     
     {
     title: "A Milli",
     artist: " Lil Wayne",
-    mp3Path: "A Milli - Lil Wayne.mp3"
+    mp3Path: "SONGS/A Milli - Lil Wayne.mp3"
     },
 
     {
@@ -26,102 +26,98 @@ const song = [
     {
     title: "Complicated",
     artist: "Avirl Lavinge",
-    mp3Path: "Complicated - Avirl Lavinge.mp3"
+    mp3Path: "SONGS/Complicated - Avirl Lavinge.mp3"
     },
 
     {
     title: "Crazy",
     artist:"Gnarles Barkley",
-    mp3Path: "Crazy - Gnarles Barkley.mp3"
+    mp3Path: "SONGS/Crazy - Gnarles Barkley.mp3"
     },
 
     {
     title: "Crazy In Love",
     artist: "Beyonce",
-    mp3Path: "Crazy in Love - Beyonce.mp3"
+    mp3Path: "SONGS/Crazy in Love - Beyonce.mp3"
     },
 
     {
     title: "Cry Me A river",
     artist: "Justin Timberlake",
-    mp3Path: "Cry me a river - Justin Timberlake.mp3"
+    mp3Path: "SONGS/Cry me a river - Justin Timberlake.mp3"
     },
 
     {
     title: "Hips Don't Lie",
     artist: "Shakira",
-    mp3Path: "Hips don't lie - Shakira .mp3"
+    mp3Path: "SONGS/Hips don't lie - Shakira .mp3"
     },
 
     {
     title: "Hollaback Girl",
     artist: "Gwen Stefani",
-    mp3Path: "Hollaback Girl - Gwen Stefani.mp3" 
+    mp3Path: "SONGS/Hollaback Girl - Gwen Stefani.mp3" 
     },
 
     {
     title: "In Da Club",
     artist: "50 Cent",
-    mp3Path: "In Da Club - 50 cent.mp3"
+    mp3Path: "SONGS/In Da Club - 50 cent.mp3"
     },
 
     {
     title: "Let Me Love You",
     artist: "Mario",
-    mp3Path: "Let me love you - Mario.mp3"
+    mp3Path: "SONGS/Let me love you - Mario.mp3"
     },
 
     {
     title: "Lose Yourself",
     artist: " Eminem",
-    mp3Path: "Lose yourself - Eminem.mp3"
+    mp3Path: "SONGS/Lose yourself - Eminem.mp3"
     },
 
     {
     title: "Misery Business",
     artist: "Paramore",
-    mp3Path: "Misery Business - Paramore.mp3"   
+    mp3Path: "SONGS/Misery Business - Paramore.mp3"   
     },
 
     {
     title: "Ms. Jackson",
     artist: "Outkast",
-    mp3Path: "Ms. Jackson - Outkast.mp3" 
+    mp3Path: "SONGS/Ms. Jackson - Outkast.mp3" 
     },
 
     {
     title: "Pokerface",
     artist: "Lady Gaga",
-    mp3Path: "Pokerface - Lady Gaga.mp3"
+    mp3Path: "SONGS/Pokerface - Lady Gaga.mp3"
     },
 
     {
     title: "Pon De Replay",
     artist: "Rihanna",
-    mp3Path: "Pon De Replay - Rihanna.mp3"
+    mp3Path: "SONGS/Pon De Replay - Rihanna.mp3"
     },
 
     {
     title: "Toxic",
     artist: "Britney Spears",
-    mp3Path: "Toxic - Britney Spears.mp3"
+    mp3Path: "SONGS/Toxic - Britney Spears.mp3"
     },
 
     {
     title: "Work It",
     artist: "Missy Elliot",
-    mp3Path: "Work It - Missy Elliot.mp3"
+    mp3Path: "SONGS/Work It - Missy Elliot.mp3"
     },
 
     {
     title: "Yeah!",
     artist: "Usher",
-    mp3Path: "Yeah! - Usher.mp3"
+    mp3Path: "SONGS/Yeah! - Usher.mp3"
     }
-
-
-    
-
 
 ]
 
@@ -134,7 +130,9 @@ function playSong() {
 
     const audioElement = document.getElementById("audio-player");
     audioElement.src = song[currentSongIndex].mp3Path;
-    audioElement.play();
+    //audioElement.play();
+
+    //add timout in this funcion
 
 
     const options = generateOptions(currentSongIndex);

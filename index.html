@@ -10,8 +10,8 @@
 <body>
    
     <h1>Guess the Song</h1>
-    <p id="song-title">Song Title</p>
-    <button onclick="playSong()">Play Song</button>
+    <p id="song-title"></p>
+    
 
     <div id="option-buttons">
         <button onclick="selectOption(this)"></button>
@@ -19,12 +19,15 @@
         <button onclick="selectOption(this)"></button>
         <button onclick="selectOption(this)"></button>
     </div>
-    <audio id="audio-player" controls>
-
-    </audio>
-   
-    
+    <audio controls autoplay>
+        <source class="songHolder" src="" type="audio/mp3">
         
+
+        
+        
+     </audio>
+
+    
     <script src="script.js"></script>
 </body>
 </html>
