@@ -125,6 +125,7 @@ const songTitlePTag = document.getElementById("song-title")
 const optionButtons = document.querySelectorAll(".optionBtn")
 const audioElement = document.getElementById("songHolder");
 const nextBtn = document.querySelector(".next")
+const scoreboard = document.getElementById("score");
 let currentSongIndex = 0;
 let score = 0
 
@@ -141,6 +142,13 @@ function playSong() {
     
         const options = generateOptions();
         displayOptions(options);
+
+        if (currentSongIndex === 0) {
+            score = 0;
+            scoreboard.textContent = score;
+        }
+        
+
     } else {
         console.log("You got a score of ", score)
     }
@@ -193,6 +201,7 @@ function selectOption(button){
 
     if (userGuess === answer) {
         score++
+        scoreboard.textContent = score;
         console.log("You got it right")
     } else {
         console.log("You wrong!")
@@ -215,7 +224,7 @@ nextBtn.addEventListener("click", () => {
 
     optionButtons.forEach(btn => {
         btn.disabled = false
-    })
+    });
 
     playSong()
-})
+});

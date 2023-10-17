@@ -53,3 +53,8 @@ audio{
     display:block;
     margin: 20px auto;
 }
+
+#scoreboard {
+    color: white;
+    font-size: 50px;
+}
