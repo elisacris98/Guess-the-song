@@ -14,20 +14,16 @@
     
 
     <div id="option-buttons">
-        <button onclick="selectOption(this)"></button>
-        <button onclick="selectOption(this)"></button>
-        <button onclick="selectOption(this)"></button>
-        <button onclick="selectOption(this)"></button>
+        <button class="optionBtn" onclick="selectOption(this)"></button>
+        <button class="optionBtn" onclick="selectOption(this)"></button>
+        <button class="optionBtn" onclick="selectOption(this)"></button>
+        <button class="optionBtn" onclick="selectOption(this)"></button>
     </div>
-    <audio controls autoplay>
-        <source class="songHolder" src="" type="audio/mp3">
-        
-
-        
-        
+    <audio id="songHolder" controls autoplay>
+        <source src="" type="audio/mp3">
      </audio>
 
-    
+    <button class="next">Next Song</button>
     <script src="script.js"></script>
 </body>
 </html>

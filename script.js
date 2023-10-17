@@ -1,4 +1,4 @@
-const song = [
+const songs = [
     {
     title: "21 Guns",
     artist: "Green Day",
@@ -20,7 +20,7 @@ const song = [
     {
     title: "Bye Bye Bye",
     artist: "NYSYNC",
-    mp3Path: "Bye Bye Bye - NYSYNC.mp3"
+    mp3Path: "SONGS/Bye Bye Bye - NYSYNC.mp3"
     },
 
     {
@@ -121,39 +121,49 @@ const song = [
 
 ]
 
+const songTitlePTag = document.getElementById("song-title")
+const optionButtons = document.querySelectorAll(".optionBtn")
+const audioElement = document.getElementById("songHolder");
+const nextBtn = document.querySelector(".next")
 let currentSongIndex = 0;
+let score = 0
 
 
 function playSong() {
-    const songTitle = song[currentSongIndex].title;
-    document.getElementById("song-title").textContent = songTitle;
+    // const songTitle = song[currentSongIndex].title;
+    // document.getElementById("song-title").textContent = songTitle;
 
-    const audioElement = document.getElementById("audio-player");
-    audioElement.src = song[currentSongIndex].mp3Path;
-    //audioElement.play();
-
-    //add timout in this funcion
-
-
-    const options = generateOptions(currentSongIndex);
-    displayOptions(options);
-
+    if (currentSongIndex < songs.length){
+        audioElement.pause()
+        audioElement.currentTime = 0
+        audioElement.src = songs[currentSongIndex].mp3Path;
+        audioElement.play();
+    
+        const options = generateOptions();
+        displayOptions(options);
+    } else {
+        console.log("You got a score of ", score)
+    }
 }
 
+playSong()
 
 
-function generateOptions(currentIndex) {
+
+function generateOptions() {
     const options = [];
-    const correctAnswer = song[currentIndex].title;
+    const correctAnswer = songs[currentSongIndex].title;
+
+    options.push(correctAnswer);
 
     while (options.length < 4) {
-        const randomIndex = Math.floor(Math.random()* song.length);
-        const randomTitle = song[randomIndex].title;
+        const randomIndex = Math.floor(Math.random()* songs.length);
+        const randomTitle = songs[randomIndex].title;
         if (options.indexOf(randomTitle)=== -1 && randomTitle !== correctAnswer) {
             options.push(randomTitle);
         }
     }
-    options.push(correctAnswer);
+    
     return shuffleArray(options);
 
 }
@@ -170,13 +180,42 @@ function shuffleArray(array) {
 
 
 function displayOptions(options) {
-    const optionButtons = document.getElementById("option-buttons").getElementsByTagName("button");
+    const optionButtons = document.querySelectorAll(".optionBtn")
     for (let i = 0; i < optionButtons.length; i++){
         optionButtons[i].textContent = options[i];
     }
 }
 
 function selectOption(button){
+    // Check User choice against correct answer
     const userGuess = button.textContent;
-    document.getElementById("user-guess").value = userGuess;
+    const answer = songs[currentSongIndex].title
+
+    if (userGuess === answer) {
+        score++
+        console.log("You got it right")
+    } else {
+        console.log("You wrong!")
+    }
+
+    songTitlePTag.textContent = answer;
+
+    // Disable all buttons after user selection
+    optionButtons.forEach(btn => {
+        btn.disabled = true
+    })
+
+    // Pause currently playing song
+    audioElement.pause()
 }
+
+nextBtn.addEventListener("click", () => {
+    currentSongIndex++
+    songTitlePTag.textContent = "";
+
+    optionButtons.forEach(btn => {
+        btn.disabled = false
+    })
+
+    playSong()
+})
