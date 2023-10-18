@@ -42,7 +42,7 @@ const songs = [
     },
 
     {
-    title: "Cry Me A river",
+    title: "Cry Me A River",
     artist: "Justin Timberlake",
     mp3Path: "SONGS/Cry me a river - Justin Timberlake.mp3"
     },
@@ -127,7 +127,8 @@ const audioElement = document.getElementById("songHolder");
 const nextBtn = document.querySelector(".next")
 const scoreboard = document.getElementById("score");
 let currentSongIndex = 0;
-let score = 0
+let score = 0;
+let songTimer ;
 
 
 function playSong() {
@@ -139,6 +140,8 @@ function playSong() {
         audioElement.currentTime = 0
         audioElement.src = songs[currentSongIndex].mp3Path;
         audioElement.play();
+
+        songTimer = setTimeout(stopSong, 15000);
     
         const options = generateOptions();
         displayOptions(options);
@@ -156,7 +159,18 @@ function playSong() {
 
 playSong()
 
+function stopSong() {
+    audioElement.pause();
+    displayCorrectAnswer();
+}
 
+function displayCorrectAnswer(){
+    const correctAnswer = songs[currentSongIndex].title;
+    songTitlePTag.textContent = `Correct Answer: ${correctAnswer}`;
+    optionButtons.forEach((btn) => {
+        btn.disabled = true;
+    });
+}
 
 function generateOptions() {
     const options = [];
@@ -199,6 +213,8 @@ function selectOption(button){
     const userGuess = button.textContent;
     const answer = songs[currentSongIndex].title
 
+    clearTimeout(songTimer);
+
     if (userGuess === answer) {
         score++
         scoreboard.textContent = score;
@@ -228,3 +244,4 @@ nextBtn.addEventListener("click", () => {
 
     playSong()
 });
+
