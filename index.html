@@ -12,6 +12,8 @@
     <h1>Guess the Song</h1>
     <p id="song-title"></p>
     
+    <button id="start-button" onclick="startGame()">Start Game</button>
+
 
     <div id="option-buttons">
         <button class="optionBtn" onclick="selectOption(this)"></button>
@@ -19,7 +21,10 @@
         <button class="optionBtn" onclick="selectOption(this)"></button>
         <button class="optionBtn" onclick="selectOption(this)"></button>
     </div>
-    <audio id="songHolder" controls autoplay>
+
+
+
+    <audio id="songHolder" autoplay>
         <source src="" type="audio/mp3">
      </audio>
      <div id="scoreboard">
