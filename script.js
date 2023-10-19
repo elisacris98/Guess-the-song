@@ -128,26 +128,57 @@ const nextBtn = document.querySelector(".next")
 const scoreboard = document.getElementById("score");
 let currentSongIndex = 0;
 let score = 0;
-let songDuration = 15000; // 15 seconds
-let answerSelectionTime = 5000; // 5 seconds
+const timerElement = document.getElementById("timer");
+const timeLeftElement = document.getElementById("time-left");
 let songTimer;
-let answerSelectionTimer;
+const songDuration = 15000; // 15 seconds
 
 
+function startGame() {
+    const startButton = document.getElementById("start-button");
+    startButton.style.display = "none"; 
+    timerElement.style.display = "block";
+    playSong(); // Start playing the song
 
+    document.getElementById("start-button").disabled = true;
+    playSong();
+}
+
+
+function updateTimer(time) {
+    timeLeftElement.textContent = time;
+  }
+  
+  function startTimer() {
+    let time = songDuration / 1000;
+    updateTimer(time);
+  
+    songTimer = setInterval(function () {
+      time--;
+  
+      if (time < 0) {
+        stopSong();
+      } else {
+        updateTimer(time);
+      }
+    }, 1000);
+  }
+  
+  function stopTimer() {
+    clearInterval(songTimer);
+    timeLeftElement.textContent = "0";
+  }
+  
 
 function playSong() {
-    // const songTitle = song[currentSongIndex].title;
-    // document.getElementById("song-title").textContent = songTitle;
-
+    
     if (currentSongIndex < songs.length){
         audioElement.pause()
         audioElement.currentTime = 0
         audioElement.src = songs[currentSongIndex].mp3Path;
         audioElement.play();
-
-        songTimer = setTimeout(stopSong, songDuration);
-        
+        stopTimer();
+        startTimer();
     
         const options = generateOptions();
         displayOptions(options);
@@ -156,12 +187,7 @@ function playSong() {
             score = 0;
             scoreboard.textContent = score;
         }
-        // Set a timer for answer selection time
-        answerSelectionTimer = setTimeout(() => {
-            // Handle the case where no answer is selected in time
-            console.log("Time's up for this song!");
-            displayCorrectAnswer();
-        }, songDuration + answerSelectionTime);
+    
 
     } else {
         console.log("You got a score of ", score)
@@ -175,7 +201,7 @@ playSong()
 
 function stopSong() {
     audioElement.pause();
-    clearTimeout(answerSelectionTimer);
+    stopTimer();
     displayCorrectAnswer();
 }
 
@@ -261,10 +287,7 @@ nextBtn.addEventListener("click", () => {
     playSong()
 });
 
-function startGame() {
-    document.getElementById("start-button").disabled = true;
-    playSong();
-}
+
 
 function nextSong() {
     currentSongIndex++;
@@ -275,9 +298,5 @@ function nextSong() {
     playSong();
 }
 
-function startGame() {
-    const startButton = document.getElementById("start-button");
-    startButton.style.display = "none"; 
-    playSong();
-}
 
+   
